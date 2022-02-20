@@ -1,0 +1,24 @@
+{
+  "name": "week-1",
+  "version": "1.0.0",
+  "description": "js-practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "js",
+    "practice",
+    "html",
+    "css"
+  ],
+  "author": "R. Molov",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
