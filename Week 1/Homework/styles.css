@@ -88,14 +88,14 @@ aside img {
 }
 
 #main div {
-  flex: 25%;
+  flex: 15%;
   padding-left: 10px;
   border: 1px solid black;
   border-radius: 5px;
   min-height: 450px;
   max-height: 550px;
-  max-width: 300px;
-  margin: 5px;
+  /* max-width: 300px; */
+  margin: 10px;
   overflow: auto;
 }
 

@@ -43,6 +43,8 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=book`)
 function getBooks(e) {
   e.preventDefault();
 
+  sectionEl.innerHTML = "";
+
   let inputValue = searchInput.value;
   fetch(`https://www.googleapis.com/books/v1/volumes?q=${inputValue}`)
     .then((resp) => resp.json())
