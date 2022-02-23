@@ -5,6 +5,11 @@ const searchInput = document.getElementById("search-input");
 const sectionEl = document.getElementById("main");
 const asideBtns = document.querySelectorAll(".aside-btn");
 const asideSectionEl = document.getElementById("aside-content");
+searchInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    getBooks();
+  }
+});
 
 fetch(`https://www.googleapis.com/books/v1/volumes?q=book`)
   .then((resp) => resp.json())
@@ -38,10 +43,17 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=book`)
 
       asideSectionEl.appendChild(asideCard);
     }
+  })
+  .catch((err) => {
+    console.log(err);
+    const errorMsg = document.createElement("h2");
+    errorMsg.textContent =
+      "There was an error fetching the data, try with another keyword.";
+    asideSectionEl.appendChild(errorMsg);
   });
 
 function getBooks(e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   sectionEl.innerHTML = "";
 
@@ -79,6 +91,13 @@ function getBooks(e) {
 
         sectionEl.appendChild(card);
       });
+    })
+    .catch((err) => {
+      console.log(err);
+      const errorMsg = document.createElement("h2");
+      errorMsg.textContent =
+        "There was an error fetching the data, try with another keyword.";
+      sectionEl.appendChild(errorMsg);
     });
 }
 
@@ -87,7 +106,7 @@ asideBtns.forEach((button) => {
 });
 
 function exampleBooks(e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   asideSectionEl.innerHTML = "";
 
@@ -125,5 +144,12 @@ function exampleBooks(e) {
 
         asideSectionEl.appendChild(asideCard);
       }
+    })
+    .catch((err) => {
+      console.log(err);
+      const errorMsg = document.createElement("h2");
+      errorMsg.textContent =
+        "There was an error fetching the data, try with another keyword.";
+      asideSectionEl.appendChild(errorMsg);
     });
 }
