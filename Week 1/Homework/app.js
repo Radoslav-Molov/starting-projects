@@ -11,7 +11,7 @@ searchInput.addEventListener("keypress", function (e) {
   }
 });
 
-fetch(`https://www.googleapis.com/books/v1/volumes?q=book`)
+fetch(`https://www.googleapis.com/books/v1/volumes?q=react`)
   .then((resp) => resp.json())
   .then((data) => {
     let arr = data.items;
@@ -27,10 +27,10 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=book`)
 
       asideCard.innerHTML = `<img src=${arr[i].volumeInfo.imageLinks.thumbnail}>`;
       asideCardTitle.textContent = arr[i].volumeInfo.title;
-      asideCardAuthor.textContent = arr[i].volumeInfo.authors;
-      asideCardPublisher.textContent = arr[i].volumeInfo.publisher;
-      asideCardYear.textContent = arr[i].volumeInfo.publishedDate;
-      asideCardCategory.textContent = arr[i].volumeInfo.categories;
+      asideCardAuthor.textContent = `Author: ${arr[i].volumeInfo.authors}`;
+      asideCardPublisher.textContent = `Publisher: ${arr[i].volumeInfo.publisher}`;
+      asideCardYear.textContent = `Date: ${arr[i].volumeInfo.publishedDate}`;
+      asideCardCategory.textContent = `Category: ${arr[i].volumeInfo.categories}`;
       asideCardDescription.textContent = arr[i].volumeInfo.description;
 
       asideCard.appendChild(asideCardImg);
@@ -75,10 +75,10 @@ function getBooks(e) {
 
         card.innerHTML = `<img src=${data.imageLinks.thumbnail}>`;
         cardTitle.textContent = data.title;
-        cardAuthor.textContent = data.authors;
-        cardPublisher.textContent = data.publisher;
-        cardYear.textContent = data.publishedDate;
-        cardCategory.textContent = data.categories;
+        cardAuthor.textContent = `Authors: ${data.authors}`;
+        cardPublisher.textContent = `Publisher: ${data.publisher}`;
+        cardYear.textContent = `Date: ${data.publishedDate}`;
+        cardCategory.textContent = `Category: ${data.categories}`;
         cardDescription.textContent = data.description;
 
         card.appendChild(cardImg);
