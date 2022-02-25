@@ -71,7 +71,7 @@ aside button {
 aside div {
   background-color: #e0dbdb;
   padding-left: 10px;
-  border: 1px solid black;
+  border: 2px outset rgb(172, 171, 171);
   border-radius: 5px;
   min-height: 400px;
   max-height: 500px;
@@ -104,12 +104,12 @@ aside img {
   flex: 15%;
   background-color: #e0dbdb;
   padding-left: 10px;
-  border: 1px solid black;
+  border: 2px outset rgb(172, 171, 171);
   border-radius: 5px;
-  min-height: 450px;
-  max-height: 600px;
+  min-height: 650px;
+  max-height: 700px;
   margin: 10px;
-  overflow: auto;
+  /* overflow: auto; */
   box-shadow: 5px 5px 2px #aaaaaa;
 }
 
@@ -118,6 +118,13 @@ aside img {
   margin: 5px;
   text-overflow: clip;
   text-align: center;
+}
+
+#main .description-span {
+  border: 3px inset rgb(172, 171, 171);
+  border-radius: 5px;
+  overflow: scroll;
+  height: 150px;
 }
 
 #main button {

@@ -36,7 +36,7 @@ function getBooks(e) {
         let cardDescription = document.createElement("span");
         let moreBtn = document.createElement("button");
 
-        let subDescription = data.description.substring(0, 40);
+        let subDescription = data.description.substring(0, 170);
         moreBtn.textContent = "See more";
         moreBtn.addEventListener("click", moreDescription);
 
@@ -47,6 +47,7 @@ function getBooks(e) {
         cardYear.innerHTML = `<strong>Date</strong>: ${data.publishedDate}`;
         cardCategory.innerHTML = `<strong>Category</strong>: ${data.categories}`;
         cardDescription.innerHTML = `<strong>Description</strong>: ${subDescription}...`;
+        cardDescription.className = "description-span";
 
         function moreDescription(e) {
           cardDescription.innerHTML = `<strong>Description</strong>: ${data.description}...`;
