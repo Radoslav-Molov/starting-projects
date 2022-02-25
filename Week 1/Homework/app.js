@@ -72,14 +72,32 @@ function getBooks(e) {
         let cardYear = document.createElement("span");
         let cardCategory = document.createElement("span");
         let cardDescription = document.createElement("span");
+        let moreBtn = document.createElement("button");
+
+        let subDescription = data.description.substring(0, 40);
+        moreBtn.textContent = "See more";
+        moreBtn.addEventListener("click", moreDescription);
 
         card.innerHTML = `<img src=${data.imageLinks.thumbnail}>`;
         cardTitle.textContent = data.title;
-        cardAuthor.textContent = `Authors: ${data.authors}`;
-        cardPublisher.textContent = `Publisher: ${data.publisher}`;
-        cardYear.textContent = `Date: ${data.publishedDate}`;
-        cardCategory.textContent = `Category: ${data.categories}`;
-        cardDescription.textContent = data.description;
+        cardAuthor.innerHTML = `<strong>Authors</strong>: ${data.authors}`;
+        cardPublisher.innerHTML = `<strong>Publisher</strong>: ${data.publisher}`;
+        cardYear.innerHTML = `<strong>Date</strong>: ${data.publishedDate}`;
+        cardCategory.innerHTML = `<strong>Category</strong>: ${data.categories}`;
+        cardDescription.innerHTML = `<strong>Description</strong>: ${subDescription}...`;
+
+        function moreDescription(e) {
+          cardDescription.innerHTML = `<strong>Description</strong>: ${data.description}...`;
+          let lessBtn = document.createElement("button");
+          lessBtn.textContent = "Show less";
+          cardDescription.appendChild(lessBtn);
+          lessBtn.addEventListener("click", lessDescription);
+        }
+
+        function lessDescription(e) {
+          cardDescription.innerHTML = `<strong>Description</strong>: ${subDescription}...`;
+          cardDescription.appendChild(moreBtn);
+        }
 
         card.appendChild(cardImg);
         card.appendChild(cardTitle);
@@ -88,6 +106,7 @@ function getBooks(e) {
         card.appendChild(cardYear);
         card.appendChild(cardCategory);
         card.appendChild(cardDescription);
+        cardDescription.appendChild(moreBtn);
 
         sectionEl.appendChild(card);
       });

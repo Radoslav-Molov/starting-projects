@@ -53,6 +53,11 @@ aside {
 
 aside button {
   margin: 3px;
+  padding: 5px;
+  border: none;
+  background: none;
+  color: rgb(104, 103, 103);
+  font-size: medium;
 }
 
 #main {
@@ -98,10 +103,10 @@ aside img {
   border: 1px solid black;
   border-radius: 5px;
   min-height: 450px;
-  max-height: 550px;
-  /* max-width: 300px; */
+  max-height: 600px;
   margin: 10px;
   overflow: auto;
+  box-shadow: 5px 5px 2px #aaaaaa;
 }
 
 #main span {
@@ -109,6 +114,14 @@ aside img {
   margin: 5px;
   text-overflow: clip;
   text-align: center;
+}
+
+#main button {
+  padding: 5px;
+  border: none;
+  background: none;
+  font-weight: bold;
+  font-size: medium;
 }
 
 #main h2 {
