@@ -1,6 +1,6 @@
 const searchBtn = document
   .getElementById("search-btn")
-  .addEventListener("click", getBooks);
+  .addEventListener("click", getUrl);
 const searchInput = document.getElementById("search-input");
 const sectionEl = document.getElementById("main");
 const asideBtns = document.querySelectorAll(".aside-btn");
@@ -8,7 +8,7 @@ const asideSectionEl = document.getElementById("aside-content");
 
 searchInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
-    getBooks();
+    getUrl();
   }
 });
 
@@ -36,14 +36,13 @@ function exampleBooks(e) {
   getData(url);
 }
 
-function getBooks() {
+function getUrl() {
   sectionEl.innerHTML = "";
 
   let inputValue = searchInput.value;
   let url = `https://www.googleapis.com/books/v1/volumes?q=${inputValue}`;
 
   exampleIsUsed = false;
-  console.log(exampleIsUsed);
 
   getData(url);
 }
@@ -77,10 +76,10 @@ function getData(url) {
 
         let cardDescription = document.createElement("span");
 
-        let subDescription = "";
+        let subDescription;
 
         if (data.description !== undefined) {
-          data.description.substring(0, 140);
+          subDescription = data.description.substring(0, 140);
         }
 
         cardDescription.innerHTML = `<strong>Description</strong>: ${subDescription}...`;

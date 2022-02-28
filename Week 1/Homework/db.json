@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "thumbnail": "",
+      "authors": "typicode",
+      "publisher": "typicode",
+      "publishedDate": "typicode",
+      "categories": "typicode",
+      "description": "typicode"
+    }
+  ],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }]
+}
