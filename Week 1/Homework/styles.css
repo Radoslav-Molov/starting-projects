@@ -20,91 +20,75 @@ h2 {
 .navbar {
   display: flex;
   background-color: #333;
-  /* align-items: right; */
-  justify-content: right;
+  height: 3rem;
 }
 
-#search-btn {
-  padding: 10px;
+.navbar a {
+  color: white;
+  margin: 1rem;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #999;
+}
+
+#form-wrapper {
+  position: relative;
+  background-color: #f6f6f6;
+  border-color: #dedede #bababa #aaa #bababa;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  box-shadow: 0 3px 3px rgba(255, 255, 255, 0.1), 0 3px 0 #bbb, 0 4px 0 #aaa,
+    0 5px 5px #444;
+  margin: 30px auto;
+  padding: 8px;
+  width: 30rem;
+  height: 3rem;
+  /* margin: auto; */
+}
+
+#form-wrapper #search {
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #fff;
   border-radius: 3px;
-  border: 1px solid black;
-  background-color: rgb(156, 156, 156);
-}
-
-.navbar input {
-  border-radius: 3px;
-  border: 1px solid black;
-  width: 20%;
-}
-
-#search-btn:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-aside {
-  display: block;
-  text-align: center;
+  color: #999;
   float: left;
-  max-width: 250px;
-  min-height: 500px;
-  text-overflow: clip;
-  border-right: 3px solid #333;
-  margin-right: 20px;
-  height: 100%;
-  overflow: auto;
+  height: 20px;
+  padding: 10px;
+  width: 350px;
 }
 
-aside button {
-  margin: 3px;
-  padding: 5px;
-  border: none;
-  background: none;
-  color: rgb(104, 103, 103);
-  font-size: medium;
+#form-wrapper #submit {
+  background-color: rgb(133, 134, 134);
+  border: 1px solid #5f6161;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
+  color: #fafafa;
+  cursor: pointer;
+  height: 42px;
+  float: right;
+  font: 15px Arial, Helvetica;
+  padding: 0;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  width: 100px;
 }
 
 #main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 #main button:hover {
-  /* background-color: #ddd; */
   color: grey;
 }
 
-aside div {
-  background-color: #e0dbdb;
-  padding-left: 10px;
-  border: 2px outset rgb(172, 171, 171);
-  border-radius: 5px;
-  min-height: 400px;
-  max-height: 500px;
-  max-width: 300px;
-  margin: 10px;
-  overflow: auto;
-}
-
-aside span {
-  display: block;
-  margin: 5px;
-  text-overflow: clip;
+#main h2 {
   text-align: center;
-}
-
-aside h2 {
-  text-align: center;
-}
-aside h3 {
-  text-align: center;
-}
-
-aside img {
-  margin-top: 5px;
-  width: 70%;
-  max-height: 250px;
 }
 
 #main div {
@@ -160,8 +144,8 @@ aside img {
 }
 
 .footer {
-  position: fixed;
-  padding: 1px;
+  margin-top: 10px;
+  padding-top: 1px;
   text-align: center;
   background: #ddd;
   bottom: 0;

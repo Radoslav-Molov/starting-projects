@@ -1,10 +1,14 @@
-const searchBtn = document
-  .getElementById("search-btn")
-  .addEventListener("click", getUrl);
-const searchInput = document.getElementById("search-input");
+const searchForm = document
+  .getElementById("form-wrapper")
+  .addEventListener("submit", getUrl);
+const searchBtn = document.getElementById("submit");
+// .addEventListener("click", getUrl);
+const searchInput = document.getElementById("search");
 const sectionEl = document.getElementById("main");
 const asideBtns = document.querySelectorAll(".aside-btn");
 const asideSectionEl = document.getElementById("aside-content");
+
+let searchBookResult = [];
 
 searchInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
@@ -15,34 +19,14 @@ searchInput.addEventListener("keypress", function (e) {
 asideBtns.forEach((button) => {
   button.addEventListener("click", exampleBooks);
 });
-exampleIsUsed = false;
 
-exampleBooks();
-
-function exampleBooks(e) {
-  asideSectionEl.innerHTML = "";
-
-  let url = "";
-
-  if (e === undefined) {
-    url = `https://www.googleapis.com/books/v1/volumes?q=google`;
-  } else {
-    let query = e.target.value;
-    url = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
-  }
-
-  exampleIsUsed = true;
-
-  getData(url);
-}
-
-function getUrl() {
+function getUrl(e) {
+  e.preventDefault();
   sectionEl.innerHTML = "";
+  console.log("done");
 
   let inputValue = searchInput.value;
   let url = `https://www.googleapis.com/books/v1/volumes?q=${inputValue}`;
-
-  exampleIsUsed = false;
 
   getData(url);
 }
@@ -52,6 +36,8 @@ function getData(url) {
     .then((resp) => resp.json())
     .then((response) => {
       response.items.forEach((book) => {
+        let id = book.id;
+
         let data = book.volumeInfo;
 
         let card = document.createElement("div");
@@ -93,6 +79,7 @@ function getData(url) {
 
         favourites.textContent = "Add to Favourites";
         favourites.id = "fav-btn";
+        favourites.addEventListener("click", addToFavourites);
 
         function moreDescription(e) {
           cardDescription.innerHTML = `<strong>Description</strong>: ${data.description}...`;
@@ -117,21 +104,20 @@ function getData(url) {
         cardDescription.appendChild(moreBtn);
         card.appendChild(favourites);
 
-        if (exampleIsUsed === true) {
-          asideSectionEl.appendChild(card);
-          if (asideSectionEl.children.length >= 2) {
-            throw "Stop";
-          }
-        } else {
-          sectionEl.appendChild(card);
-        }
+        sectionEl.appendChild(card);
+        searchBookResult.push({ id });
+        console.log(searchBookResult);
       });
     })
     .catch((err) => {
       console.log(err);
-      // const errorMsg = document.createElement("h2");
-      // errorMsg.textContent =
-      //   "There was an error fetching the data, try with another keyword.";
-      // sectionEl.appendChild(errorMsg);
+      const errorMsg = document.createElement("h2");
+      errorMsg.textContent =
+        "There was an error fetching the data, try with another keyword.";
+      sectionEl.appendChild(errorMsg);
     });
+}
+
+function addToFavourites(e) {
+  console.log(e);
 }
