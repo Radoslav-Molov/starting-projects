@@ -162,3 +162,38 @@ function deleteBook() {
     method: "DELETE",
   });
 }
+
+let filterInput = document.getElementById("filter");
+
+let filterBtn = document
+  .getElementById("filterBtn")
+  .addEventListener("click", filterRes);
+
+let posts = [];
+
+function filterRes() {
+  let filterValue = filterInput.value;
+
+  fetch("http://localhost:5000/api/posts/")
+    .then((res) => res.json())
+    .then((data) =>
+      data.filter((word) => {
+        Object.values(word).filter((check) => {
+          if (check == filterValue) {
+            posts.push(word);
+          }
+        });
+      })
+    );
+  console.log(posts);
+  // getResults();
+}
+
+// function getResults() {
+//   console.log(posts);
+//   posts.forEach((post) => {
+//     fetch(`http://localhost:5000/api/posts/${post}`)
+//       .then((res) => res.json())
+//       .then((data) => console.log(data));
+//   });
+// }
