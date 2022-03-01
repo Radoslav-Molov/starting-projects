@@ -1,4 +1,12 @@
+import { getData, getUrl } from "./api/api.js";
+
 const homeTemplate = (context) => context.html`
+
+<form id="form-wrapper">
+      <input type="text" id="search" placeholder="Search for..." required />
+      <input type="submit" value="Search" id="submit" />
+</form>
+
     <div>
     <img
       src="http://books.google.com/books/content?id=SZtsFe66zucC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api"

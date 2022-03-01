@@ -1,10 +1,35 @@
 {
-  "posts": [],
-  "comments": [
+  "posts": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": "SZtsFe66zucC",
+      "thumbnail": "http://books.google.com/books/content?id=SZtsFe66zucC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Google Apps: The Missing Manual",
+      "authors": ["Nancy Conner"],
+      "publisher": "\"O'Reilly Media, Inc.\"",
+      "publishedDate": "2008-05-27",
+      "categories": ["Computers"],
+      "description": "Among its many amazing applications, Google now has web-based alternatives to many of the applications in Microsoft Office. This comprehensive and easy-to-follow new book enables you to explore Google's new office applications in detail. Once you do, you'll be in good company -- more than 100,000 small businesses and some corporations are already looking to take advantage of these free Google offerings. Google Apps: The Missing Manual teaches you how to use three relatively new applications from Google: \"Docs and Spreadsheets\", which provide many of the same core tools that you find in Word and Excel; and Google Calendar and Gmail, the applications that offer an alternative to Outlook. This book demonstrates how these applications together can ease your ability to collaborate with others, and allow you access to your documents, mail and appointments from any computer at any location. Of course, as remarkable as these applications are, Google's office suite is definitely a work-in-progress. Navigating what you can and can't do and -- more importantly -- understanding how to do it isn't always easy. And good luck finding enough help online. Google Apps: The Missing Manual is the one book you need to get the most out of this increasingly useful part of the Google empire. This book: Explains how to create, save and share each of Google's web-based office applications Offers separate sections for Docs and Spreadsheets, Google Calendar, and Gmail Demonstrates how to use these applications in conjunction with one another Gives you crystal-clear and jargon-free explanations that will satisfy users of all technical levels Many of you already use Gmail, but do you know its full potential? Do you know how you can increase its power by using Gmail with Doc and Spreadsheets and Google Calendar? You'll find out with Google Apps: The Missing Manual. You'll also come to understand why large corporations such as General Electric and Proctor & Gamble are taking a long, hard look at these applications."
+    },
+    {
+      "id": "a20OYx_XnloC",
+      "thumbnail": "http://books.google.com/books/content?id=a20OYx_XnloC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Getting Productive With Google Apps: Increase productivity while cutting costs",
+      "authors": ["James Beswick"],
+      "publisher": "James Beswick",
+      "publishedDate": "2009-02-05",
+      "categories": ["Computers"],
+      "description": "Google Apps is a next-generation software suite that can help make your organization more productive while cutting traditional I.T. costs. Collaborate with colleagues and go beyond the desktop with this no-to-low-cost solution that can help practically any size of organization."
+    },
+    {
+      "id": "oF5PPfe-DEEC",
+      "thumbnail": "http://books.google.com/books/content?id=oF5PPfe-DEEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Google Analytics 2.0",
+      "authors": ["Jerri L. Ledford", "Mary E. Tyler"],
+      "publisher": "John Wiley & Sons",
+      "publishedDate": "2009-06-17",
+      "categories": ["Computers"],
+      "description": "Site statistics give you raw numbers, but Web analytics crunch those numbers into meaningful metrics you can actually use. Here’s what's new in Google Analytics 2.0, such as cross-segment reporting and drilldown content that enhance analysis. Learn to set up Analytics and choose filters, explore goals and goal-setting, use customizable dashboards and date ranges, and master basic analytics and Web statistics concepts. Examine every aspect of available reports, learn to use those best suited for e-commerce sites, and more. BONUS: Each copy of Google Analytics 2.0 includes a $25 Google AdWords gift card compliments of Google. With this $25 gift card , you can attract new customers to your website on Google's dime."
     }
-  ]
+  ],
+  "comments": []
 }

@@ -1,12 +1,12 @@
 import page from "../node_modules/page/page.mjs";
+import { getData, getUrl } from "./api/api.js";
 
 const searchForm = document
   .getElementById("form-wrapper")
   .addEventListener("submit", getUrl);
 const searchBtn = document.getElementById("submit");
-// .addEventListener("click", getUrl);
-const searchInput = document.getElementById("search");
-const sectionEl = document.getElementById("main");
+export const searchInput = document.getElementById("search");
+export const sectionEl = document.getElementById("main");
 const asideBtns = document.querySelectorAll(".aside-btn");
 const asideSectionEl = document.getElementById("aside-content");
 
@@ -15,7 +15,7 @@ page(
   "/",
   getData.bind(null, "https://www.googleapis.com/books/v1/volumes?q=google")
 );
-// page("/favourite", getFavourites());
+
 page.start();
 
 searchInput.addEventListener("keypress", function (e) {
@@ -28,35 +28,7 @@ asideBtns.forEach((button) => {
   button.addEventListener("click", exampleBooks);
 });
 
-function getUrl(e) {
-  e.preventDefault();
-  sectionEl.innerHTML = "";
-  console.log("done");
-
-  let inputValue = searchInput.value;
-  let url = `https://www.googleapis.com/books/v1/volumes?q=${inputValue}`;
-
-  getData(url);
-}
-
-function getData(url) {
-  fetch(url)
-    .then((resp) => resp.json())
-    .then((response) => {
-      response.items.forEach((book) => {
-        createBook(book);
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      const errorMsg = document.createElement("h2");
-      errorMsg.textContent =
-        "There was an error fetching the data, try with another keyword.";
-      sectionEl.appendChild(errorMsg);
-    });
-}
-
-function createBook(book) {
+export function createBook(book) {
   let data = "";
   let imgPath = book;
   if (book.title === undefined) {
@@ -133,7 +105,6 @@ function createBook(book) {
 }
 
 function addToFavourites(book) {
-  // getFavourites();
   const id = book.id;
   const thumbnail = book.volumeInfo.imageLinks.thumbnail;
   const title = book.volumeInfo.title;
@@ -144,6 +115,7 @@ function addToFavourites(book) {
   const description = book.volumeInfo.description;
 
   favouriteBooks.push({
+    id,
     thumbnail,
     title,
     authors,
@@ -154,6 +126,7 @@ function addToFavourites(book) {
   });
 
   console.log(favouriteBooks);
+  postFavourites();
 }
 
 function postFavourites() {
@@ -162,19 +135,30 @@ function postFavourites() {
       "Content-Type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify(favouriteBooks),
-  }).then((resp) => console.log(resp));
-  // .then((data) => console.log(data));
+    body: JSON.stringify(favouriteBooks.pop()),
+  })
+    .then((resp) => resp.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 }
 
 let test = document
   .getElementById("test")
-  .addEventListener("click", postFavourites);
+  .addEventListener("click", getFavourites);
 
 function getFavourites() {
-  postFavourites();
   sectionEl.innerHTML = "";
   fetch("http://localhost:5000/api/posts")
     .then((resp) => resp.json())
     .then((data) => data[0].forEach((book) => createBook(book)));
+}
+
+let remove = document
+  .getElementById("delete")
+  .addEventListener("click", deleteBook);
+
+function deleteBook() {
+  fetch("http://localhost:5000/api/posts/Dc7RAgAAQBAJ", {
+    method: "DELETE",
+  });
 }
