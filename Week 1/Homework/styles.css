@@ -92,13 +92,14 @@ h2 {
 }
 
 #main div {
-  flex: 15%;
+  flex: 17%;
   background-color: #e0dbdb;
   padding-left: 10px;
   border: 2px outset rgb(172, 171, 171);
   border-radius: 5px;
   min-height: 650px;
   max-height: 700px;
+  max-width: 400px;
   margin: 10px;
   /* overflow: auto; */
   box-shadow: 5px 5px 2px #aaaaaa;

@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "json-server db.json --routes routes.json",
+    "api": "json-server db.json --port 5000 --routes routes.json",
     "start": "lite-server"
   },
   "keywords": [],
@@ -13,7 +13,8 @@
   "license": "Apache",
   "dependencies": {
     "json-server": "^0.17.0",
+    "lit-html": "^2.2.0",
     "lite-server": "^2.6.1",
-    "page.js": "^4.13.3"
+    "page": "^1.11.6"
   }
 }
