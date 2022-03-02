@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Google Books API</title>
   </head>
-  <body>
+  <body id="body">
     <div class="header">
       <h1>Books Search Engine</h1>
     </div>
@@ -17,31 +17,20 @@
       <a href="/favourites">Favourites</a>
     </div>
 
-    <form id="form-wrapper">
-      <input type="text" id="search" placeholder="Search for..." required />
-      <input type="submit" value="Search" id="submit" />
-    </form>
+    <div id="search-form">
+      <form id="form-wrapper">
+        <input type="text" id="search" placeholder="Search for..." required />
+        <input type="submit" value="Search" id="submit" />
+      </form>
+    </div>
 
-    <!-- <aside id="aside">
-      <h3>Frequently searched:</h3>
-      <button class="aside-btn" value="react">React</button>
-      <button class="aside-btn" value="js">JavaScript</button>
-      <button class="aside-btn" value="coding">Coding</button>
-      <button class="aside-btn" value="it">IT</button>
-      <button class="aside-btn" value="back-end">Back-End</button>
-      <button class="aside-btn" value="html">HTML&CSS</button>
-      <button class="aside-btn" value="academy">Academies</button>
-      <button class="aside-btn" value="api">API</button>
-      <button class="aside-btn" value="database">Database</button>
-      <section id="aside-content"></section>
-    </aside> -->
+    <section id="main">
+      <div class="book-container"></div>
+    </section>
 
-    <section id="main"></section>
-
-    <button id="test">some</button>
-    <button id="delete">delete</button>
-    <input placeholder="some" type="text" id="filter" />
-    <button id="filterBtn">delete</button>
+    <!-- <button id="delete">delete</button> -->
+    <!-- <input placeholder="some" type="text" id="filter" />
+    <button id="filterBtn">filter</button> -->
 
     <div class="footer">
       <h3>Copyright....</h3>

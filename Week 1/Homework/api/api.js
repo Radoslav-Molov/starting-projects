@@ -1,23 +1,34 @@
-import { sectionEl, createBook, searchInput } from "../app.js";
+import {
+  sectionEl,
+  createBook,
+  searchInput,
+  cardContainer,
+  formDiv,
+  seachDiv,
+} from "../app.js";
 
-export function getUrl(e) {
+export function getUrl(e, url) {
   e.preventDefault();
   sectionEl.innerHTML = "";
   console.log("done");
 
   let inputValue = searchInput.value;
-  let url = `https://www.googleapis.com/books/v1/volumes?q=${inputValue}`;
+  url = `https://www.googleapis.com/books/v1/volumes?q=${inputValue}`;
 
   getData(url);
 }
 
 export function getData(url) {
+  seachDiv.style.display = "none";
+  cardContainer.innerHTML = "";
+  formDiv.style.display = "block";
   fetch(url)
     .then((resp) => resp.json())
     .then((response) => {
       response.items.forEach((book) => {
         createBook(book);
       });
+      sectionEl.appendChild(cardContainer);
     })
     .catch((err) => {
       console.log(err);

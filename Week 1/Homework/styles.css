@@ -9,6 +9,8 @@ body {
   background: #9aa09f;
   color: white;
   font-style: oblique;
+  width: 100%;
+  height: 5rem;
 }
 
 h2 {
@@ -31,6 +33,12 @@ h2 {
 
 .navbar a:hover {
   color: #999;
+}
+
+#container {
+  margin: 3rem auto;
+  width: 92%;
+  min-height: calc(100vh - 14rem);
 }
 
 #form-wrapper {
@@ -78,7 +86,20 @@ h2 {
 
 #main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 35rem;
+}
+
+p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.book-container {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -91,16 +112,14 @@ h2 {
   text-align: center;
 }
 
-#main div {
+.book-container div {
   flex: 17%;
   background-color: #e0dbdb;
   padding-left: 10px;
   border: 2px outset rgb(172, 171, 171);
   border-radius: 5px;
-  min-height: 650px;
-  max-height: 700px;
-  max-width: 400px;
   margin: 10px;
+  max-width: 20%;
   /* overflow: auto; */
   box-shadow: 5px 5px 2px #aaaaaa;
 }
@@ -123,7 +142,21 @@ h2 {
   height: 130px;
 }
 
-#main button {
+#main .search-wrapper {
+  /* display: block; */
+  max-width: 600px;
+}
+.search-wrapper button {
+  max-width: 100px;
+  min-height: 30px;
+}
+
+.search-wrapper input {
+  max-width: 400px;
+  min-height: 30px;
+}
+
+.book-container button {
   padding: 5px;
   border: none;
   background: none;
@@ -150,6 +183,8 @@ h2 {
   text-align: center;
   background: #ddd;
   bottom: 0;
+  text-align: center;
   width: 100%;
-  height: 45px;
+  height: 2rem;
+  padding: 10px;
 }

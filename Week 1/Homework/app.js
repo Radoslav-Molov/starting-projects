@@ -1,20 +1,28 @@
 import page from "../node_modules/page/page.mjs";
 import { getData, getUrl } from "./api/api.js";
 
+const htmlBody = document.getElementById("body");
 const searchForm = document
   .getElementById("form-wrapper")
   .addEventListener("submit", getUrl);
 const searchBtn = document.getElementById("submit");
 export const searchInput = document.getElementById("search");
+export const formDiv = document.getElementById("search-form");
 export const sectionEl = document.getElementById("main");
 const asideBtns = document.querySelectorAll(".aside-btn");
 const asideSectionEl = document.getElementById("aside-content");
+const container = document.getElementById("container");
+export const cardContainer = document.querySelector(".book-container");
+export const seachDiv = document.createElement("div");
+seachDiv.className = "search-wrapper";
 
 let favouriteBooks = [];
 page(
   "/",
   getData.bind(null, "https://www.googleapis.com/books/v1/volumes?q=google")
 );
+page("/favourites", getFavourites);
+page("*", pageNotFound);
 
 page.start();
 
@@ -22,10 +30,6 @@ searchInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     getUrl();
   }
-});
-
-asideBtns.forEach((button) => {
-  button.addEventListener("click", exampleBooks);
 });
 
 export function createBook(book) {
@@ -37,6 +41,8 @@ export function createBook(book) {
   } else {
     data = book;
   }
+
+  cardContainer.className = "book-container";
   let card = document.createElement("div");
 
   let cardImg = document.createElement("img");
@@ -78,6 +84,10 @@ export function createBook(book) {
   favourites.id = "fav-btn";
   favourites.addEventListener("click", addToFavourites.bind(null, book));
 
+  let deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Remove from Favoutires";
+  deleteBtn.addEventListener("click", deleteBook.bind(null, book));
+
   function moreDescription(e) {
     cardDescription.innerHTML = `<strong>Description</strong>: ${data.description}...`;
     let lessBtn = document.createElement("button");
@@ -99,12 +109,18 @@ export function createBook(book) {
   card.appendChild(cardCategory);
   card.appendChild(cardDescription);
   cardDescription.appendChild(moreBtn);
-  card.appendChild(favourites);
 
-  sectionEl.appendChild(card);
+  if (data.id === undefined) {
+    card.appendChild(favourites);
+  } else {
+    card.appendChild(deleteBtn);
+  }
+
+  cardContainer.appendChild(card);
 }
 
 function addToFavourites(book) {
+  // console.log(book);
   const id = book.id;
   const thumbnail = book.volumeInfo.imageLinks.thumbnail;
   const title = book.volumeInfo.title;
@@ -142,58 +158,56 @@ function postFavourites() {
     .catch((err) => console.log(err));
 }
 
-let test = document
-  .getElementById("test")
-  .addEventListener("click", getFavourites);
-
 function getFavourites() {
-  sectionEl.innerHTML = "";
+  cardContainer.innerHTML = "";
+  formDiv.style.display = "none";
+
   fetch("http://localhost:5000/api/posts")
     .then((resp) => resp.json())
-    .then((data) => data[0].forEach((book) => createBook(book)));
+    .then((data) => {
+      data.forEach((book) => createBook(book));
+      sectionEl.appendChild(cardContainer);
+    });
+
+  favSearch();
 }
 
-let remove = document
-  .getElementById("delete")
-  .addEventListener("click", deleteBook);
+function favSearch() {
+  seachDiv.style.display = "block";
 
-function deleteBook() {
-  fetch("http://localhost:5000/api/posts/Dc7RAgAAQBAJ", {
+  let favInputField = document.createElement("input");
+  let favSeacrhBtn = document.createElement("button");
+  favSeacrhBtn.textContent = "Search";
+
+  if (seachDiv.innerHTML == "") {
+    seachDiv.appendChild(favInputField);
+    seachDiv.appendChild(favSeacrhBtn);
+    sectionEl.appendChild(seachDiv);
+    favSeacrhBtn.addEventListener("click", fetchFav);
+  }
+
+  function fetchFav() {
+    let filterValue = favInputField.value;
+
+    fetch(`http://localhost:5000/api/posts?title=${filterValue}`)
+      .then((res) => res.json())
+      .then((data) => {
+        cardContainer.innerHTML = "";
+        createBook(data.pop());
+      });
+  }
+}
+
+function deleteBook(book) {
+  let data = book;
+  const deleteQuery = book.id;
+  fetch(`http://localhost:5000/api/posts/${deleteQuery}`, {
     method: "DELETE",
   });
+  // addToFavourites(data);
 }
 
-let filterInput = document.getElementById("filter");
-
-let filterBtn = document
-  .getElementById("filterBtn")
-  .addEventListener("click", filterRes);
-
-let posts = [];
-
-function filterRes() {
-  let filterValue = filterInput.value;
-
-  fetch("http://localhost:5000/api/posts/")
-    .then((res) => res.json())
-    .then((data) =>
-      data.filter((word) => {
-        Object.values(word).filter((check) => {
-          if (check == filterValue) {
-            posts.push(word);
-          }
-        });
-      })
-    );
-  console.log(posts);
-  // getResults();
+function pageNotFound() {
+  console.log(htmlBody);
+  htmlBody.style.display = "none";
 }
-
-// function getResults() {
-//   console.log(posts);
-//   posts.forEach((post) => {
-//     fetch(`http://localhost:5000/api/posts/${post}`)
-//       .then((res) => res.json())
-//       .then((data) => console.log(data));
-//   });
-// }
