@@ -199,12 +199,14 @@ function favSearch() {
 }
 
 function deleteBook(book) {
-  let data = book;
   const deleteQuery = book.id;
   fetch(`http://localhost:5000/api/posts/${deleteQuery}`, {
     method: "DELETE",
   });
-  // addToFavourites(data);
+
+  setTimeout(() => {
+    getFavourites();
+  }, 500);
 }
 
 function pageNotFound() {

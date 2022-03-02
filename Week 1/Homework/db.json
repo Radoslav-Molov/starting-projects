@@ -1,4 +1,95 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "id": "etFX6ZHHsTcC",
+      "thumbnail": "http://books.google.com/books/content?id=etFX6ZHHsTcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Building Web Apps for Google TV",
+      "authors": [
+        "Andres Ferrate",
+        "Amanda Surya",
+        "Daniels Lee",
+        "Maile Ohye",
+        "Paul Carff"
+      ],
+      "publisher": "\"O'Reilly Media, Inc.\"",
+      "publishedDate": "2011-06-23",
+      "categories": [
+        "Computers"
+      ],
+      "description": "By integrating the Web with traditional TV, Google TV offers developers an important new channel for content. But creating apps for Google TV requires learning some new skills—in fact, what you may already know about mobile or desktop web apps isn't entirely applicable. Building Web Apps for Google TV will help you make the transition to Google TV as you learn the tools and techniques necessary to build sophisticated web apps for this platform. This book shows you how Google TV works, how it fits into the web ecosystem, and what the opportunities are for delivering rich content to millions of households. Discover the elements of a compelling TV web app, and what comprises TV-friendly navigation Learn the fundamentals for designing the 10-foot user experience Work with the Google Chrome browser on a TV display, and migrate an existing site Use examples for developing a TV web app, including the UI, controls, and scrolling Understand how to optimize, deliver, and protect video content for Google TV Help users discover your content by optimizing your site for Search—especially videos"
+    },
+    {
+      "id": "qbykAwAAQBAJ",
+      "thumbnail": "http://books.google.com/books/content?id=qbykAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "My Google Apps",
+      "authors": [
+        "Patrice-Anne Rutledge",
+        "Sherry Kinkoph Gunter"
+      ],
+      "publisher": "Que Publishing",
+      "publishedDate": "2014-05-26",
+      "categories": [
+        "Computers"
+      ],
+      "description": "Full-color, step-by-step tasks walk you through doing exactly what you want with Google Apps. Learn how to: Use Google Apps to reduce technology expenses and grow your business Choose the best Google Apps version for your needs Quickly activate and customize your account Give your users customized email that uses your domain, not gmail.com Connect Gmail to your smartphone so your email and schedule always go with you Create, format, edit, print, and collaborate on documents with Docs Track and analyze your data with Sheets Create presentations with Slides and present anywhere via the Internet Cut travel costs: run video meetings online with Google Hangouts Improve project collaboration with a shared Sites workspace Efficiently manage and share your schedule with Calendar Store and share your files for secure anytime/anywhere access Sync your files between your PC or Mac and Google Drive in the cloud Use Vault to archive content and activity for compliance or other legal reasons Step-by-step instructions with callouts to new Google Apps screenshots that show you exactly what to do. Help when you run into Google Apps problemsor limitations. Tips and Notes to help you get the most from Google Apps."
+    },
+    {
+      "id": "9cmZMQEACAAJ",
+      "thumbnail": "http://books.google.com/books/content?id=9cmZMQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "title": "The Big Switch: Rewiring the World, from Edison to Google",
+      "authors": [
+        "Nicholas Carr"
+      ],
+      "publisher": "W. W. Norton",
+      "publishedDate": "2013-06-10",
+      "categories": [
+        "Computers"
+      ],
+      "description": "“Magisterial. . . . Draws an elegant and illuminating parallel between the late-19th-century electrification of America and today’s computing world.”—Salon Hailed as “the most influential book so far on the cloud computing movement” (Christian Science Monitor), The Big Switch makes a simple and profound statement: Computing is turning into a utility, and the effects of this transition will ultimately change society as completely as the advent of cheap electricity did. In a new chapter for this edition that brings the story up-to-date, Nicholas Carr revisits the dramatic new world being conjured from the circuits of the “World Wide Computer.”"
+    },
+    {
+      "id": "oF5PPfe-DEEC",
+      "thumbnail": "http://books.google.com/books/content?id=oF5PPfe-DEEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Google Analytics 2.0",
+      "authors": [
+        "Jerri L. Ledford",
+        "Mary E. Tyler"
+      ],
+      "publisher": "John Wiley & Sons",
+      "publishedDate": "2009-06-17",
+      "categories": [
+        "Computers"
+      ],
+      "description": "Site statistics give you raw numbers, but Web analytics crunch those numbers into meaningful metrics you can actually use. Here’s what's new in Google Analytics 2.0, such as cross-segment reporting and drilldown content that enhance analysis. Learn to set up Analytics and choose filters, explore goals and goal-setting, use customizable dashboards and date ranges, and master basic analytics and Web statistics concepts. Examine every aspect of available reports, learn to use those best suited for e-commerce sites, and more. BONUS: Each copy of Google Analytics 2.0 includes a $25 Google AdWords gift card compliments of Google. With this $25 gift card , you can attract new customers to your website on Google's dime."
+    },
+    {
+      "id": "IgpZDwAAQBAJ",
+      "thumbnail": "http://books.google.com/books/content?id=IgpZDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Spin: Rumpelstiltskin Retold",
+      "authors": [
+        "Demelza Carlton"
+      ],
+      "publisher": "Lost Plot Press",
+      "publishedDate": "2018-03-30",
+      "categories": [
+        "Fiction"
+      ],
+      "description": "A miller’s daughter. A cursed knight. The power of a name. Once upon a time… Molina has one desire: to see her inventions spread throughout the kingdom. When Prince Lubos offers to take her to the capital as his bride, she jumps at the chance. But impressing the king may take more than a simple spinning wheel. To marry Prince Lubos, she will need to work a miracle. Molina enters into a desperate bargain with a mysterious man who turns all he touches into gold. A man with a tragic tale of his own, all tied up in his family name. The future hangs in the balance, but will either of them live to see it?"
+    },
+    {
+      "id": "DnIxCwAAQBAJ",
+      "thumbnail": "http://books.google.com/books/content?id=DnIxCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "The Ugly Truth About Google Adwords",
+      "authors": [
+        "Thomas Schwartz"
+      ],
+      "publisher": "Lulu Press, Inc",
+      "publishedDate": "2015-12-05",
+      "categories": [
+        "Computers"
+      ],
+      "description": "Google Adwords is one of the most promising advertising opportunities that abound in the Internet arena. It is a pay-per-click system that advertises websites which have the highest bids for a certain search word or phrase. If one would look at the window of an Internet browser and search something on the Google search engine, he will notice a section containing “sponsored links” at the right-hand side of the screen. These are the Adwords advertisements. These are websites which pay to be shown whenever a certain phrase or word is searched through Google. Discover everything you need to know by grabbing a copy of this ebook today."
+    }
+  ],
   "comments": []
 }
