@@ -4,7 +4,7 @@ import {
   searchInput,
   cardContainer,
   formDiv,
-  seachDiv,
+  searchDiv,
 } from "../app.js";
 
 export function getUrl(e, url) {
@@ -19,7 +19,7 @@ export function getUrl(e, url) {
 }
 
 export function getData(url) {
-  seachDiv.style.display = "none";
+  searchDiv.style.display = "none";
   cardContainer.innerHTML = "";
   formDiv.style.display = "block";
   fetch(url)

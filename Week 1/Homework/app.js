@@ -3,23 +3,19 @@ import { getData, getUrl } from "./api/api.js";
 
 const htmlBody = document.getElementById("body");
 const searchForm = document
-  .getElementById("form-wrapper")
+  .querySelector(".form-wrapper")
   .addEventListener("submit", getUrl);
-const searchBtn = document.getElementById("submit");
-export const searchInput = document.getElementById("search");
+export const searchInput = document.querySelector(".search");
 export const formDiv = document.getElementById("search-form");
 export const sectionEl = document.getElementById("main");
-const asideBtns = document.querySelectorAll(".aside-btn");
-const asideSectionEl = document.getElementById("aside-content");
-const container = document.getElementById("container");
 export const cardContainer = document.querySelector(".book-container");
-export const seachDiv = document.createElement("div");
-seachDiv.className = "search-wrapper";
+export const searchDiv = document.createElement("div");
+searchDiv.className = "form-wrapper";
 
 let favouriteBooks = [];
 page(
   "/",
-  getData.bind(null, "https://www.googleapis.com/books/v1/volumes?q=google")
+  getData.bind(null, "https://www.googleapis.com/books/v1/volumes?q=react")
 );
 page("/favourites", getFavourites);
 page("*", pageNotFound);
@@ -44,6 +40,10 @@ export function createBook(book) {
 
   cardContainer.className = "book-container";
   let card = document.createElement("div");
+  card.className = "each-book";
+
+  let infoWrapper = document.createElement("div");
+  infoWrapper.className = "info-wrapper";
 
   let cardImg = document.createElement("img");
   card.innerHTML = `<img src=${imgPath.thumbnail}>`;
@@ -83,9 +83,11 @@ export function createBook(book) {
   favourites.textContent = "Add to Favourites";
   favourites.id = "fav-btn";
   favourites.addEventListener("click", addToFavourites.bind(null, book));
+  favourites.className = "action-btn";
 
   let deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Remove from Favoutires";
+  deleteBtn.className = "action-btn";
   deleteBtn.addEventListener("click", deleteBook.bind(null, book));
 
   function moreDescription(e) {
@@ -101,12 +103,13 @@ export function createBook(book) {
     cardDescription.appendChild(moreBtn);
   }
 
-  card.appendChild(cardImg);
-  card.appendChild(cardTitle);
-  card.appendChild(cardAuthor);
-  card.appendChild(cardPublisher);
-  card.appendChild(cardYear);
-  card.appendChild(cardCategory);
+  infoWrapper.appendChild(cardImg);
+  infoWrapper.appendChild(cardTitle);
+  infoWrapper.appendChild(cardAuthor);
+  infoWrapper.appendChild(cardPublisher);
+  infoWrapper.appendChild(cardYear);
+  infoWrapper.appendChild(cardCategory);
+  card.appendChild(infoWrapper);
   card.appendChild(cardDescription);
   cardDescription.appendChild(moreBtn);
 
@@ -120,7 +123,6 @@ export function createBook(book) {
 }
 
 function addToFavourites(book) {
-  // console.log(book);
   const id = book.id;
   const thumbnail = book.volumeInfo.imageLinks.thumbnail;
   const title = book.volumeInfo.title;
@@ -141,11 +143,13 @@ function addToFavourites(book) {
     description,
   });
 
-  console.log(favouriteBooks);
+  // console.log(favouriteBooks);
   postFavourites();
 }
 
 function postFavourites() {
+  searchDiv.style.display = "block";
+
   fetch("http://localhost:5000/api/posts", {
     headers: {
       "Content-Type": "application/json",
@@ -173,27 +177,65 @@ function getFavourites() {
 }
 
 function favSearch() {
-  seachDiv.style.display = "block";
+  searchDiv.style.display = "block";
+
+  let select = document.createElement("select");
+
+  let searchOpt = document.createElement("option");
+  searchOpt.value = "";
+  searchOpt.textContent = "Search By:";
+  searchOpt.disabled = true;
+  searchOpt.selected = true;
+
+  let titleOpt = document.createElement("option");
+  titleOpt.value = "title";
+  titleOpt.textContent = "Title";
+
+  let producersOpt = document.createElement("option");
+  producersOpt.value = "publisher";
+  producersOpt.textContent = "Publisher";
+
+  let authorsOpt = document.createElement("option");
+  authorsOpt.value = "authors";
+  authorsOpt.textContent = "Authors";
+
+  let categiesOpt = document.createElement("option");
+  categiesOpt.value = "categories";
+  categiesOpt.textContent = "Categories";
+
+  select.appendChild(searchOpt);
+  select.appendChild(titleOpt);
+  select.appendChild(authorsOpt);
+  select.appendChild(producersOpt);
+  select.appendChild(categiesOpt);
 
   let favInputField = document.createElement("input");
+  favInputField.placeholder = "Enter title";
+  favInputField.className = "search";
   let favSeacrhBtn = document.createElement("button");
   favSeacrhBtn.textContent = "Search";
+  favSeacrhBtn.className = "submit";
 
-  if (seachDiv.innerHTML == "") {
-    seachDiv.appendChild(favInputField);
-    seachDiv.appendChild(favSeacrhBtn);
-    sectionEl.appendChild(seachDiv);
+  if (searchDiv.innerHTML == "") {
+    searchDiv.appendChild(select);
+    searchDiv.appendChild(favInputField);
+    searchDiv.appendChild(favSeacrhBtn);
+    sectionEl.appendChild(searchDiv);
     favSeacrhBtn.addEventListener("click", fetchFav);
   }
 
   function fetchFav() {
     let filterValue = favInputField.value;
+    let value = select.options[select.selectedIndex].value;
 
-    fetch(`http://localhost:5000/api/posts?title=${filterValue}`)
+    fetch(`http://localhost:5000/api/posts?${value}=${filterValue}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         cardContainer.innerHTML = "";
-        createBook(data.pop());
+        data.forEach((book) => {
+          createBook(book);
+        });
       });
   }
 }
@@ -207,6 +249,10 @@ function deleteBook(book) {
   setTimeout(() => {
     getFavourites();
   }, 500);
+
+  setTimeout(() => {
+    formDiv.style.display = "none";
+  }, 550);
 }
 
 function pageNotFound() {
