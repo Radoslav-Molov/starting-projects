@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 function EachCard({
   id,
@@ -27,26 +28,49 @@ function EachCard({
         alt="Final product"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          <strong>Summary:</strong>
-          {summary}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <strong>Preparation time:</strong>
-          {prepTime}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <strong>Ingredients:</strong>
-          {ingredients}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <strong>Description:</strong>
-          {fullDescription}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <strong>Tags:</strong>
-          {tags}
-        </Typography>
+        <div style={{ display: "flexbox", flexWrap: "wrap" }}>
+          <Box
+            sx={{ maxWidth: "400px", wordWrap: "break-word" }}
+            variant="body2"
+            color="text.secondary"
+          >
+            <strong>Summary:</strong>
+            {summary}
+          </Box>
+          <Typography
+            sx={{ maxWidth: "400px", wordWrap: "break-word" }}
+            variant="body2"
+            color="text.secondary"
+          >
+            <strong>Preparation time:</strong>
+            {prepTime}
+          </Typography>
+          <Typography
+            sx={{ maxWidth: "400px", wordWrap: "break-word" }}
+            variant="body2"
+            color="text.secondary"
+          >
+            <strong>Ingredients:</strong>
+            {ingredients}
+          </Typography>
+          <Typography
+            whiteSpace="normal"
+            variant="body2"
+            color="text.secondary"
+            sx={{ maxWidth: "400px", wordWrap: "break-word" }}
+          >
+            <strong>Description:</strong>
+            {fullDescription}
+          </Typography>
+          <Typography
+            sx={{ maxWidth: "400px", wordWrap: "break-word" }}
+            variant="body2"
+            color="text.secondary"
+          >
+            <strong>Tags:</strong>
+            {tags}
+          </Typography>
+        </div>
       </CardContent>
       <CardActions disableSpacing></CardActions>
     </Card>

@@ -37,9 +37,10 @@ function CreateForm() {
     event.preventDefault();
 
     if (
+      title !== "" &&
       title.length <= 80 &&
       summary.length <= 256 &&
-      fullDescription <= 2048
+      fullDescription.length <= 2048
     ) {
       setValidInputs(true);
     } else {
@@ -66,6 +67,14 @@ function CreateForm() {
       .then((resp) => resp.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
+
+    setTitle("");
+    setSummary("");
+    setPrepTime("");
+    setIngredients("");
+    setImage("");
+    setFullDescription("");
+    setTags("");
   };
 
   return (

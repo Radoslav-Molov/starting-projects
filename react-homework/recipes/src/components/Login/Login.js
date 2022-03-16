@@ -33,7 +33,7 @@ function Login() {
     }
 
     fetch("http://localhost:8080/login", {
-      method: "POST", // or 'PUT'
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
