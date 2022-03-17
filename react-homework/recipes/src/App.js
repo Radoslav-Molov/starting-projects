@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Footer from "./components/Footer/Footer";
 import ButtonAppBar from "./components/Nav/Nav";
 import EachCard from "./components/Catalog/Card/Card";
@@ -13,15 +13,25 @@ import Users from "./components/Users/Users";
 
 function App() {
   const [path, setPath] = useState("");
+  const [user, setUser] = useState("");
 
   const changeCurrentPath = (currentPath) => {
     setPath(currentPath);
   };
+  useEffect(() => {
+    if (!window.localStorage) {
+      setUser("");
+    } else {
+      const userKey = Object.keys(window.localStorage);
+      setUser(userKey[0]);
+    }
+  }, []);
 
+  // console.log(user);
   if (path === "/login") {
     return (
       <div className="App">
-        <ButtonAppBar />
+        <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
         <Login />
         <Footer />
       </div>
@@ -30,7 +40,7 @@ function App() {
   if (path === "/register") {
     return (
       <div className="App">
-        <ButtonAppBar />
+        <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
         <Register />
         <Footer />
       </div>
@@ -39,7 +49,7 @@ function App() {
   if (path === "/recipes") {
     return (
       <div className="App">
-        <ButtonAppBar />
+        <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
         <Catalog />
         <Footer />
       </div>
@@ -48,7 +58,7 @@ function App() {
   if (path === "/create") {
     return (
       <div className="App">
-        <ButtonAppBar />
+        <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
         <CreateForm />
         <Footer />
       </div>
@@ -57,8 +67,8 @@ function App() {
   if (path === "/users") {
     return (
       <div className="App">
-        <ButtonAppBar />
-        {/* <Users /> */}
+        <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
+        <Users />
         <Footer />
       </div>
     );
@@ -66,7 +76,7 @@ function App() {
   if (path === "/list") {
     return (
       <div className="App">
-        <ButtonAppBar />
+        <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
         <List />
         <Footer />
       </div>
@@ -75,10 +85,8 @@ function App() {
 
   return (
     <div className="App">
-      <ButtonAppBar changeCurrentPath={changeCurrentPath} />
-
-      {/* <Catalog /> */}
-      <Users />
+      <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
+      <Catalog />
       <Footer />
     </div>
   );

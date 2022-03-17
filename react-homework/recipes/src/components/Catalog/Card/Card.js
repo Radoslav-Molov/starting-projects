@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import ReactMarkdown from "react-markdown";
 
 function EachCard({
   id,
@@ -20,7 +21,11 @@ function EachCard({
 }) {
   return (
     <Card sx={{ maxWidth: 345, m: 2 }}>
-      <CardHeader title={title} subheader={dateCreated} />
+      <CardHeader
+        sx={{ height: "100px" }}
+        title={title}
+        subheader={`Date added: ${dateCreated}`}
+      />
       <CardMedia
         component="img"
         height="194"
@@ -35,7 +40,7 @@ function EachCard({
             color="text.secondary"
           >
             <strong>Summary:</strong>
-            {summary}
+            <ReactMarkdown children={summary}></ReactMarkdown>
           </Box>
           <Typography
             sx={{ maxWidth: "400px", wordWrap: "break-word" }}
@@ -60,7 +65,7 @@ function EachCard({
             sx={{ maxWidth: "400px", wordWrap: "break-word" }}
           >
             <strong>Description:</strong>
-            {fullDescription}
+            <ReactMarkdown>{fullDescription}</ReactMarkdown>
           </Typography>
           <Typography
             sx={{ maxWidth: "400px", wordWrap: "break-word" }}

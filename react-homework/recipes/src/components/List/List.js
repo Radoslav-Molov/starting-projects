@@ -7,7 +7,7 @@ function List() {
   useEffect(() => {
     fetch("http://localhost:8080/posts")
       .then((res) => res.json())
-      .then((recipeArr) => setRecipes(recipeArr))
+      .then((arr) => setRecipes(arr))
       .catch((err) => console.log(err));
   }, []);
 
@@ -16,7 +16,13 @@ function List() {
       <h1>List of all recipes</h1>
       <div>
         {recipes.map((x) => (
-          <Item key={x.id} id={x.id} title={x.title} image={x.image} />
+          <Item
+            key={x.id}
+            id={x.id}
+            title={x.title}
+            image={x.image}
+            email={x.user}
+          />
         ))}
       </div>
     </div>

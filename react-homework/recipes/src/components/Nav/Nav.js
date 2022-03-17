@@ -3,10 +3,22 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useState, useEffect } from "react";
 
 function ButtonAppBar({ changeCurrentPath }) {
+  const [user, setUser] = useState(false);
+
+  useEffect(() => {
+    if (!window.localStorage) {
+      setUser(false);
+    } else {
+      const userKey = Object.keys(window.localStorage);
+      setUser(userKey[0]);
+    }
+  }, []);
+
   const logoutHandler = () => {
-    localStorage.removeItem("userToken");
+    localStorage.removeItem(user);
   };
 
   const loginHandler = () => {
@@ -53,15 +65,20 @@ function ButtonAppBar({ changeCurrentPath }) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Recipes
           </Typography>
-          <Button color="inherit" onClick={loginHandler}>
-            Login
-          </Button>
-          <Button color="inherit" onClick={registerHandler}>
-            Register
-          </Button>
-          <Button onClick={logoutHandler} color="inherit">
-            Logout
-          </Button>
+          {user ? (
+            <Button onClick={logoutHandler} color="inherit">
+              Logout
+            </Button>
+          ) : (
+            [
+              <Button color="inherit" onClick={loginHandler}>
+                Login
+              </Button>,
+              <Button color="inherit" onClick={registerHandler}>
+                Register
+              </Button>,
+            ]
+          )}
         </Toolbar>
       </AppBar>
     </Box>

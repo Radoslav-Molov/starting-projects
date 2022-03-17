@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 // import { Button, TextField } from "@mui/material";
 
-function Login() {
+function Login(onLoginHandler) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validInputs, setValidInputs] = useState(false);
@@ -25,7 +25,7 @@ function Login() {
   const submissionHandler = (event) => {
     event.preventDefault();
 
-    if (email.length < 15 && password.length > 8) {
+    if (email.length <= 15 && password.length > 8) {
       setValidInputs(true);
     } else {
       setValidInputs(false);
@@ -44,7 +44,7 @@ function Login() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        window.localStorage.setItem("userToken", data.accessToken);
+        window.localStorage.setItem(email, data.accessToken);
       })
       .catch((err) => console.log(err));
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -6,7 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import { Avatar, ListItemAvatar } from "@mui/material";
 
-function Item({ id, title, image }) {
+function Item({ id, title, image, email }) {
   const deleteHandler = (e) => {
     const recipeId = e.currentTarget.parentElement.parentNode.id;
     fetch(`http://localhost:8080/posts/${recipeId}`, {
@@ -14,9 +14,26 @@ function Item({ id, title, image }) {
     });
   };
 
+  const [user, setUser] = useState("");
+  const [isSame, setIsSame] = useState(false);
+  useEffect(() => {
+    if (!window.localStorage) {
+      setUser("");
+    } else {
+      const userKey = Object.keys(window.localStorage);
+      setUser(userKey[0]);
+    }
+  }, []);
+
+  setTimeout(() => {
+    if (user === email) {
+      setIsSame(true);
+    }
+  }, 200);
+
   return (
     <List
-      id={id}
+      key={id}
       sx={{
         width: "50%",
         m: "auto",
@@ -38,13 +55,17 @@ function Item({ id, title, image }) {
           />
         </ListItemAvatar>
         <ListItemText sx={{ color: "black", ml: "40px" }}>{title}</ListItemText>
-        <Button sx={{ color: "primary.main", mr: "10px" }}>Edit</Button>
-        <Button
-          sx={{ color: "primary.main", mr: "30px" }}
-          onClick={deleteHandler}
-        >
-          Delete
-        </Button>
+        {isSame
+          ? [
+              <Button sx={{ color: "primary.main", mr: "10px" }}>Edit</Button>,
+              <Button
+                sx={{ color: "primary.main", mr: "30px" }}
+                onClick={deleteHandler}
+              >
+                Delete
+              </Button>,
+            ]
+          : ""}
       </ListItem>
     </List>
   );

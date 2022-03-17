@@ -8,7 +8,7 @@ function Catalog() {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/posts")
+    fetch("http://localhost:8080/posts?_sort=dateCreated&_order=desc")
       .then((res) => res.json())
       .then((recipeArr) => setRecipes(recipeArr.slice(0, 10)))
       .catch((err) => console.log(err));
@@ -20,10 +20,10 @@ function Catalog() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:8080/posts?title=${title}`)
+    fetch(`http://localhost:8080/posts?q=${title}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setRecipes(data);
       });
   };
 

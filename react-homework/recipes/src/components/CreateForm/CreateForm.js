@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Paper, TextField, Button } from "@mui/material";
 
 function CreateForm() {
@@ -10,6 +10,7 @@ function CreateForm() {
   const [fullDescription, setFullDescription] = useState("");
   const [tags, setTags] = useState("");
   const [validInputs, setValidInputs] = useState(false);
+  const [date, setDate] = useState("");
 
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);
@@ -32,11 +33,30 @@ function CreateForm() {
   const tagsChangeHandler = (event) => {
     setTags(event.target.value);
   };
+  useEffect(() => {
+    const today = new Date();
+    setDate(
+      `${today.getFullYear()}/${
+        today.getMonth() + 1
+      }/${today.getDate()} - ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
+    );
+  }, []);
+
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    if (!window.localStorage) {
+      setUser("");
+    } else {
+      const userKey = Object.keys(window.localStorage);
+      setUser(userKey[0]);
+    }
+  }, []);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     if (
+      user !== undefined &&
       title !== "" &&
       title.length <= 80 &&
       summary.length <= 256 &&
@@ -61,7 +81,9 @@ function CreateForm() {
         image: image,
         fullDescription: fullDescription,
         tags: tags,
-        dateCreated: Date().toLocaleString(),
+        // dateCreated: Date().toLocaleString(),
+        dateCreated: date,
+        user: user,
       }),
     })
       .then((resp) => resp.json())

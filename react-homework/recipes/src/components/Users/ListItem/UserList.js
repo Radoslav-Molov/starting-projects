@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -14,6 +14,23 @@ function UserItem({ id, email, image }) {
       method: "DELETE",
     });
   };
+
+  const [user, setUser] = useState("");
+  const [isSame, setIsSame] = useState(false);
+  useEffect(() => {
+    if (!window.localStorage) {
+      setUser("");
+    } else {
+      const userKey = Object.keys(window.localStorage);
+      setUser(userKey[0]);
+    }
+  }, []);
+
+  setTimeout(() => {
+    if (user === "admin@gmail.com" || user === email) {
+      setIsSame(true);
+    }
+  }, 200);
 
   return (
     <List
@@ -39,13 +56,17 @@ function UserItem({ id, email, image }) {
           />
         </ListItemAvatar>
         <ListItemText sx={{ color: "black", ml: "40px" }}>{email}</ListItemText>
-        <Button sx={{ color: "primary.main", mr: "10px" }}>Edit</Button>
-        <Button
-          sx={{ color: "primary.main", mr: "30px" }}
-          onClick={deleteHandler}
-        >
-          Delete
-        </Button>
+        {isSame
+          ? [
+              <Button sx={{ color: "primary.main", mr: "10px" }}>Edit</Button>,
+              <Button
+                sx={{ color: "primary.main", mr: "30px" }}
+                onClick={deleteHandler}
+              >
+                Delete
+              </Button>,
+            ]
+          : ""}
       </ListItem>
     </List>
   );

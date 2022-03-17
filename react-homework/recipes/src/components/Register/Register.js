@@ -42,7 +42,7 @@ function Register() {
     event.preventDefault();
 
     if (
-      email.length < 15 &&
+      email.length <= 15 &&
       password.length > 8 &&
       picture !== "" &&
       description.length < 512

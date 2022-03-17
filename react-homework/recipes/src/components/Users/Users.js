@@ -11,7 +11,6 @@ function Users() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(users);
   return (
     <div>
       <h1>List of all users</h1>
