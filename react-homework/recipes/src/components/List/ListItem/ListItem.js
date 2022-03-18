@@ -6,7 +6,18 @@ import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import { Avatar, ListItemAvatar } from "@mui/material";
 
-function Item({ id, title, image, email }) {
+function Item({
+  id,
+  title,
+  image,
+  email,
+  summary,
+  fullDescription,
+  tags,
+  ingredients,
+  prepTime,
+  changeCurrentPath,
+}) {
   const deleteHandler = (e) => {
     const recipeId = e.currentTarget.parentElement.parentNode.id;
     fetch(`http://localhost:8080/posts/${recipeId}`, {
@@ -26,10 +37,15 @@ function Item({ id, title, image, email }) {
   }, []);
 
   setTimeout(() => {
-    if (user === email) {
+    if (user === "admin@gmail.com" || user === email) {
       setIsSame(true);
     }
   }, 200);
+
+  const goToEdit = () => {
+    window.history.pushState({}, "", `/edit/${id}`);
+    changeCurrentPath(`/edit/${id}`);
+  };
 
   return (
     <List
@@ -57,7 +73,12 @@ function Item({ id, title, image, email }) {
         <ListItemText sx={{ color: "black", ml: "40px" }}>{title}</ListItemText>
         {isSame
           ? [
-              <Button sx={{ color: "primary.main", mr: "10px" }}>Edit</Button>,
+              <Button
+                onClick={goToEdit}
+                sx={{ color: "primary.main", mr: "10px" }}
+              >
+                Edit
+              </Button>,
               <Button
                 sx={{ color: "primary.main", mr: "30px" }}
                 onClick={deleteHandler}

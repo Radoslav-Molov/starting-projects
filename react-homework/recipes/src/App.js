@@ -10,10 +10,11 @@ import Catalog from "./components/Catalog/Catalog";
 import Item from "./components/List/ListItem/ListItem";
 import List from "./components/List/List";
 import Users from "./components/Users/Users";
+import Edit from "./components/Edit/Edit";
 
 function App() {
   const [path, setPath] = useState("");
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
 
   const changeCurrentPath = (currentPath) => {
     setPath(currentPath);
@@ -25,14 +26,27 @@ function App() {
       const userKey = Object.keys(window.localStorage);
       setUser(userKey[0]);
     }
-  }, []);
+  });
 
   // console.log(user);
   if (path === "/login") {
     return (
       <div className="App">
+        <ButtonAppBar
+          user={user}
+          setUser={setUser}
+          changeCurrentPath={changeCurrentPath}
+        />
+        <Login setUser={setUser} changeCurrentPath={changeCurrentPath} />
+        <Footer />
+      </div>
+    );
+  }
+  if (path.includes("/edit")) {
+    return (
+      <div className="App">
         <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
-        <Login />
+        <Edit changeCurrentPath={changeCurrentPath} />
         <Footer />
       </div>
     );
@@ -59,7 +73,7 @@ function App() {
     return (
       <div className="App">
         <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
-        <CreateForm />
+        <CreateForm changeCurrentPath={changeCurrentPath} />
         <Footer />
       </div>
     );
@@ -77,7 +91,7 @@ function App() {
     return (
       <div className="App">
         <ButtonAppBar user={user} changeCurrentPath={changeCurrentPath} />
-        <List />
+        <List changeCurrentPath={changeCurrentPath} />
         <Footer />
       </div>
     );

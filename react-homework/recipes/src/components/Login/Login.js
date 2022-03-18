@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 // import { Button, TextField } from "@mui/material";
 
-function Login(onLoginHandler) {
+function Login({ setUser, changeCurrentPath }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validInputs, setValidInputs] = useState(false);
@@ -45,8 +45,12 @@ function Login(onLoginHandler) {
       .then((resp) => resp.json())
       .then((data) => {
         window.localStorage.setItem(email, data.accessToken);
+        setUser({ email: data.accessToken });
       })
       .catch((err) => console.log(err));
+
+    window.history.pushState({}, "", "/recipes");
+    changeCurrentPath("/recipes");
   };
 
   return (
